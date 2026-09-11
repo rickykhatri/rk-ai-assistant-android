@@ -95,7 +95,7 @@ fun ChatTopBar(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = currentConversation?.title?.ifBlank { "Rk Smart Chat" } ?: "Rk Smart Chat",
+                        text = currentConversation?.title?.ifBlank { "RK AI Assist" } ?: "RK AI Assist",
                         style = MaterialTheme.typography.titleMedium.copy(
                             fontWeight = FontWeight.Bold,
                             fontSize = 16.sp
@@ -124,10 +124,10 @@ fun ChatTopBar(
                                     .background(MaterialTheme.colorScheme.primary)
                             )
                             Spacer(modifier = Modifier.width(4.dp))
+                            val rawModel = currentConversation?.model ?: "RK AI"
+                            val displayModel = if (rawModel.contains("llama", ignoreCase = true)) "RK AI" else rawModel.removePrefix("gpt-").uppercase()
                             Text(
-                                text = (currentConversation?.model ?: "gpt-4o-mini")
-                                    .removePrefix("gpt-")
-                                    .uppercase(),
+                                text = displayModel,
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onPrimaryContainer

@@ -343,12 +343,13 @@ fun EmptyChatWelcomeView(
 
         Spacer(modifier = Modifier.height(6.dp))
 
+        val displayModel = if (modelName.contains("llama", ignoreCase = true)) "RK AI" else modelName
         Surface(
             shape = RoundedCornerShape(16.dp),
             color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.6f)
         ) {
             Text(
-                text = "Rk Smart Chat • $modelName",
+                text = "RK AI Assist • $displayModel",
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Medium,
                 color = MaterialTheme.colorScheme.onPrimaryContainer,

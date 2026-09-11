@@ -137,7 +137,7 @@ fun ConversationDrawer(
                     Spacer(modifier = Modifier.width(10.dp))
                     Column {
                         Text(
-                            text = "Rk Smart Chat",
+                            text = "RK AI Assist",
                             style = MaterialTheme.typography.titleLarge.copy(
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 18.sp
@@ -302,7 +302,7 @@ fun ConversationDrawer(
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
-                            text = "Rk Smart Chat • llama3.2",
+                            text = "RK AI Assist • RK AI",
                             fontSize = 12.sp,
                             fontWeight = FontWeight.Medium,
                             color = MaterialTheme.colorScheme.onPrimaryContainer,

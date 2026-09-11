@@ -65,8 +65,8 @@ import com.example.data.preferences.ThemeMode
 import com.example.data.preferences.UserSettings
 
 val AVAILABLE_MODELS = listOf(
-    "llama3.2" to "Llama 3.2 3B - Ultra fast & smart (Recommended)",
-    "llama3.1" to "Llama 3.1 8B - Powerful multilingual reasoning model"
+    "llama3.2" to "RK AI (Default) - Ultra fast & smart",
+    "llama3.1" to "RK AI Pro - Powerful reasoning model"
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -124,7 +124,7 @@ fun SettingsDialog(
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
-                                text = "Rk Smart Chat API Active",
+                                text = "RK AI Assist API Active",
                                 fontWeight = FontWeight.SemiBold,
                                 fontSize = 14.sp,
                                 color = MaterialTheme.colorScheme.onPrimaryContainer
@@ -321,7 +321,7 @@ fun SettingsDialog(
                             color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f)
                         ) {
                             Text(
-                                text = "Rk Smart Chat v1.0",
+                                text = "RK AI Assist v1.0",
                                 fontSize = 11.sp,
                                 fontWeight = FontWeight.Medium,
                                 color = MaterialTheme.colorScheme.onPrimaryContainer,

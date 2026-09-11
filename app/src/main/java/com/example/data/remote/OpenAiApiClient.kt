@@ -178,13 +178,13 @@ class OpenAiApiClient {
                 onChunk?.invoke(finalResult)
                 Result.success(finalResult)
             } else {
-                Result.failure(Exception("Received empty response from Rk Smart Chat API."))
+                Result.failure(Exception("Received empty response from RK AI Assist API."))
             }
         } catch (e: Exception) {
             Log.e("OpenAiApiClient", "Error in sendRkChatCompletion", e)
             val friendlyMsg = when {
                 e is java.net.SocketTimeoutException || e.message?.contains("timed out", ignoreCase = true) == true || e.message?.contains("timeout", ignoreCase = true) == true ->
-                    "Request timed out while waiting for llama3.2. Tap Retry to try again."
+                    "Request timed out while waiting for RK AI. Tap Retry to try again."
                 e.message?.contains("Unable to resolve host", ignoreCase = true) == true ->
                     "Unable to resolve host. Please check your internet connection."
                 else -> e.localizedMessage ?: "Failed to connect to chat API."

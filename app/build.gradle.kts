@@ -15,7 +15,7 @@ android {
   compileSdk { version = release(36) { minorApiLevel = 1 } }
 
   defaultConfig {
-    applicationId = "com.aistudio.aichat.qnmwlz"
+    applicationId = "com.rkAssist.ai"
     minSdk = 24
     targetSdk = 36
     versionCode = 1

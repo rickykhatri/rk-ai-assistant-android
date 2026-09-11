@@ -22,6 +22,6 @@ dependencyResolutionManagement {
   }
 }
 
-rootProject.name = "Rk Smart Chat"
+rootProject.name = "RK AI Assist"
 
 include(":app")

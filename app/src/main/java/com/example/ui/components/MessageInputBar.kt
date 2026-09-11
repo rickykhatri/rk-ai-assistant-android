@@ -42,6 +42,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -113,15 +114,19 @@ fun MessageInputBar(
             }
         }
 
+        val isLightTheme = MaterialTheme.colorScheme.surface.luminance() > 0.5f
+        val containerColor = if (isLightTheme) MaterialTheme.colorScheme.surfaceVariant else SophisticatedDarkSurfaceElevated
+        val containerBorderColor = when {
+            inputText.isNotBlank() -> MaterialTheme.colorScheme.primary.copy(alpha = 0.6f)
+            isLightTheme -> MaterialTheme.colorScheme.outline.copy(alpha = 0.6f)
+            else -> MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)
+        }
+
         // Input Container
         Surface(
             shape = RoundedCornerShape(24.dp),
-            color = SophisticatedDarkSurfaceElevated,
-            border = BorderStroke(
-                1.dp,
-                if (inputText.isNotBlank()) MaterialTheme.colorScheme.primary.copy(alpha = 0.6f)
-                else MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)
-            ),
+            color = containerColor,
+            border = BorderStroke(1.dp, containerBorderColor),
             modifier = Modifier.fillMaxWidth()
         ) {
             Row(
@@ -130,20 +135,31 @@ fun MessageInputBar(
                     .padding(start = 14.dp, end = 6.dp, top = 4.dp, bottom = 4.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                val inputTextColor = if (isLightTheme) Color.Black else MaterialTheme.colorScheme.onSurface
+                val placeholderTextColor = if (isLightTheme) Color.Black.copy(alpha = 0.6f) else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                val cursorColor = if (isLightTheme) Color.Black else MaterialTheme.colorScheme.primary
+
                 OutlinedTextField(
                     value = inputText,
                     onValueChange = onInputChange,
+                    textStyle = MaterialTheme.typography.bodyLarge.copy(
+                        color = inputTextColor,
+                        fontSize = 15.sp
+                    ),
                     placeholder = {
                         Text(
                             text = if (isGenerating) "Generating… tap ■ to stop" else "Ask anything…",
                             fontSize = 15.sp,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                            color = placeholderTextColor
                         )
                     },
                     modifier = Modifier
                         .weight(1f)
                         .testTag("message_input_field"),
                     colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = inputTextColor,
+                        unfocusedTextColor = inputTextColor,
+                        cursorColor = cursorColor,
                         focusedBorderColor = Color.Transparent,
                         unfocusedBorderColor = Color.Transparent,
                         disabledBorderColor = Color.Transparent,
@@ -172,7 +188,7 @@ fun MessageInputBar(
                         Icon(
                             imageVector = Icons.Default.Clear,
                             contentDescription = "Clear input",
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
+                            tint = if (isLightTheme) Color.Black.copy(alpha = 0.7f) else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
                             modifier = Modifier.size(18.dp)
                         )
                     }
