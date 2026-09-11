@@ -1,0 +1,6 @@
+{
+  "name": "Rk Smart Chat",
+  "description": "ChatGPT-style AI chat application developed by Ricky Khatri, powered by OpenAI API with conversation history, MVI architecture, Room persistence, and dark mode.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
